@@ -1,0 +1,13 @@
+<div [ngClass]="{'dark-theme': isDarkTheme | async}">
+  <div class="mat-app-background">
+    <app-toolbar></app-toolbar>
+    
+    <div class="content">
+      <router-outlet></router-outlet>
+      <app-email></app-email>
+    </div>
+
+    
+  </div>
+</div>
+<app-footer></app-footer>

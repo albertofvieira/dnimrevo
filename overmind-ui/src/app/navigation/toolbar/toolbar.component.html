@@ -1,0 +1,25 @@
+<!--
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <h1>overmind-ui</h1>
+    <mat-slide-toggle [checked]="isDarkTheme | async" (change)="toggleDarkTheme($event.checked)">
+      <span style="font-size: 14px;">
+        <span class="material-icons">visibility</span>
+        Acessibilidade</span>
+    </mat-slide-toggle>
+  </mat-toolbar-row>
+</mat-toolbar>
+-->
+
+<mat-toolbar color="primary">
+  <span>overmind.ai</span>
+
+  <span class="example-spacer"></span>
+  
+  <mat-slide-toggle [checked]="isDarkTheme | async" (change)="toggleDarkTheme($event.checked)">
+    <span style="font-size: 14px;">
+      <span class="material-icons">visibility</span>
+      Acessibilidade</span>
+  </mat-slide-toggle>
+
+</mat-toolbar>

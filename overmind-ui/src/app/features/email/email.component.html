@@ -1,0 +1,149 @@
+<div class="container pb-5">
+	<h6 class="text-center mb-4 mt-5">Por favor, preencha os campos abaixo</h6>
+	<div class="row">
+		<div class="col-md-6 offset-md-3">
+			<form [formGroup]="overmindLoginForm" (ngSubmit)="onSubmit(overmindLoginForm.value)">
+
+				<!-- NOME -->
+				<div class="form-group">
+					<span class="material-icons">person</span>
+					<label for="nome" class="col-form-label">Nome</label>
+					<input type="text" formControlName="nome" name="nome" placeholder="" class="form-control">
+
+					<label class="text-danger password-validation-info" 
+						*ngIf="
+							overmindLoginForm.controls['nome'].hasError('required') 
+							&& overmindLoginForm.controls['nome'].touched
+						">
+							Por favor, informe seu nome completo
+					</label>
+				</div>
+
+				<!-- EMAIL -->
+				<div class="form-group mt-3">
+					<span class="material-icons">email</span>
+					<label for="E-mail" class="col-form-label">Email</label>
+					<input type="email" formControlName="email" class="form-control" name="email" placeholder="">
+
+					<label class="text-danger password-validation-info" 
+						*ngIf="
+							(overmindLoginForm.controls['email'].hasError('email')
+							|| overmindLoginForm.controls['email'].hasError('required'))
+							&& overmindLoginForm.controls['email'].touched
+						">
+						Por favor, informe um e-mail válido
+					</label>
+				</div>
+
+				<!-- TELEFONE -->
+				<div class="form-group mt-3">
+					<span class="material-icons">phone</span>
+					<label for="telefone" class="col-form-label"> Telefone</label>
+					<mat-form-field style="width:100%">
+						<ngx-mat-intl-tel-input
+						  [preferredCountries]="['br', 'gb', 'us']"
+						  class="form-control"
+						  [enablePlaceholder]="true"
+						  name="telefone"
+						  formControlName="telefone">
+						</ngx-mat-intl-tel-input>
+						<mat-error *ngIf="overmindLoginForm.controls['telefone']?.errors?.required">Por favor, informe seu telefone</mat-error>
+					  </mat-form-field>
+				</div>
+
+				<!-- SENHA -->
+				<div class="form-group mt-1">
+					<span class="material-icons">password</span>
+					<label for="password" class="col-form-label">Senha</label>
+					<input type="password" formControlName="password" name="password" placeholder="" class="form-control">
+				</div>
+
+				<!-- MENSAGENS DE ALERTA -->
+				<div style="padding-left: 30px;">
+
+					<!-- 8 caracteres -->
+					<div class="password-validation-info"
+						[ngClass]="overmindLoginForm.controls['password'].hasError('required') 
+						|| overmindLoginForm.controls['password'].hasError('minlength')  
+						? 'text-danger' : 'text-success'"
+					>
+						<i class="material-icons">
+							{{ 
+								overmindLoginForm.controls['password'].hasError('required') 
+								|| overmindLoginForm.controls['password'].hasError('minlength') 
+								? 'cancel' : 'check_circle' 
+							}}
+						</i>
+						Ao menos 8 caracteres
+					</div>
+
+					<!-- 1 número -->
+					<div class="password-validation-info" 
+						[ngClass]="overmindLoginForm.controls['password'].hasError('required') 
+						|| overmindLoginForm.controls['password'].hasError('hasNumber')  
+						? 'text-danger' : 'text-success'"
+					>
+						<i class="material-icons">
+							{{ 
+								overmindLoginForm.controls['password'].hasError('required') 
+								|| overmindLoginForm.controls['password'].hasError('hasNumber') 
+								? 'cancel' : 'check_circle' 
+							}}
+						</i>
+						Ao menos 1 número
+					</div>
+
+					<!-- 1 letra maiúscula -->
+					<div class="password-validation-info" 
+						[ngClass]="overmindLoginForm.controls['password'].hasError('required') 
+						|| overmindLoginForm.controls['password'].hasError('hasCapitalCase')  
+						? 'text-danger' : 'text-success'"
+					>
+						<i class="material-icons">
+							{{ 
+								overmindLoginForm.controls['password'].hasError('required') 
+								|| overmindLoginForm.controls['password'].hasError('hasCapitalCase') 
+								? 'cancel' : 'check_circle' 
+							}}
+						</i>
+						Ao menos 1 letra maiúscula
+					</div>
+
+					<!-- 1 letra minúscula -->
+					<div class="password-validation-info" 
+						[ngClass]="overmindLoginForm.controls['password'].hasError('required') 
+						|| overmindLoginForm.controls['password'].hasError('hasSmallCase')  
+						? 'text-danger' : 'text-success'"
+					>
+						<i class="material-icons">
+							{{ 
+								overmindLoginForm.controls['password'].hasError('required') 
+								|| overmindLoginForm.controls['password'].hasError('hasSmallCase') 
+								? 'cancel' : 'check_circle' 
+							}}
+						</i>
+						Ao menos uma letra minúscula
+					</div>
+				</div>
+
+				<!-- SENHA CONFIRMAÇÃO -->
+				<div class="form-group mt-3">
+					<span class="material-icons">password</span>
+					<label for="confirmPassword" class="col-form-label">Confirmação de senha</label>
+					<input type="password" formControlName="confirmPassword" name="confirmPassword" placeholder="" class="form-control">
+				</div>
+
+				<label class="text-danger password-validation-info"
+					*ngIf="overmindLoginForm.controls['confirmPassword'].hasError('NoPassswordMatch')">
+					As senhas precisam ser iguais
+				</label>
+
+				<hr />
+
+				<!-- SUBMIT -->
+				<button type="submit" class="btn btn-primary" [disabled]="!overmindLoginForm.valid">Enviar</button>
+
+			</form>
+		</div>
+	</div>
+</div>
